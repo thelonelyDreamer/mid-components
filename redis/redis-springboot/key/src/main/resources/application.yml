@@ -1,0 +1,10 @@
+server:
+  port: 12345
+spring:
+  application:
+    name: redis-key-springboot
+
+  redis:
+    host: 42.192.49.180
+    port: 6379
+    database: 1

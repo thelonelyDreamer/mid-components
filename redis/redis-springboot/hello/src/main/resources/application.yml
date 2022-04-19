@@ -1,0 +1,7 @@
+server:
+  port: 12345
+spring:
+  application:
+    name: redis-springboot-hello
+  redis:
+    host: 42.192.49.180
