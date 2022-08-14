@@ -25,19 +25,22 @@ public class RabbitMQUtils {
 
     public static Channel obtainChannel() {
         Channel channel = channelThreadLocal.get();
-        if (null == channel) {
-            if (null == connection) {
-                synchronized (RabbitMQUtils.class) {
-                    if (null == connection) {
-                        configClient();
+        try {
+            if (null == channel) {
+                if (null == connection) {
+                    synchronized (RabbitMQUtils.class) {
+                        if (null == connection) {
+                            configClient();
+                        }
                     }
                 }
+                synchronized (RabbitMQUtils.class){
+                    channel = connection.createChannel();
+
+                }
             }
-            try {
-                channel = connection.createChannel();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return channel;
     }
@@ -56,7 +59,7 @@ public class RabbitMQUtils {
         }
     }
 
-    public static void closeConnection(){
+    public static synchronized void closeConnection(){
         try {
             connection.close();
         } catch (IOException e) {
