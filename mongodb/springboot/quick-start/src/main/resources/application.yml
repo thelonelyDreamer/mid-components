@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      host: 42.192.49.180
+      username: admin
+      password: test123
