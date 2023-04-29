@@ -1,0 +1,13 @@
+server:
+  port: 12345
+
+spring:
+  kafka:
+    bootstrap-servers: PLAINTEXT://main.felixwc.com:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: test-consumer-group
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
